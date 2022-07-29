@@ -13,7 +13,6 @@ public class App {
         Git git = Git.open(new File(""));
         System.out.println(git.log().call().iterator().next().getShortMessage());
         System.out.println(git.getRepository().getBranch());
-
     }
 
     private static void printResponse(Response response) throws IOException {
