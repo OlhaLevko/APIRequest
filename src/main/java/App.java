@@ -5,35 +5,21 @@
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.errors.GitAPIException;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public class App {
 
-    public static void main(String[] args) throws IOException {
-
-
-        //insert the copied code below this line
-
-
-        printResponse(response);
+    public static void main(String[] args) throws IOException, GitAPIException {
+        Git git = Git.open(new File(""));
+        System.out.println(git.log().call().iterator().next().getShortMessage());
+        System.out.println(git.getRepository().getBranch());
+        //Main commit
     }
-
     private static void printResponse(Response response) throws IOException {
-        System.out.println(Arrays.stream(response.body().string().split(""))
-                .map(ch -> {
-                    if ("{".equals(ch)
-                    ) {
-                        ch = ch.replace("{", "\n{");
-                    }
-                    if (",".equals(ch)
-                    ) {
-                        ch = ch.replace(",", ",\n");
-                    }
-                    return ch;
-                })
-                .collect(Collectors.joining()));
+
     }
 }
